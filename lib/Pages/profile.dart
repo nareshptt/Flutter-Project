@@ -221,7 +221,7 @@ class _ProfileState extends State<Profile> {
             'Profile',
             style: TextStyle(
               color: Color(0xFF1976D2), // Dark blue for the title
-              fontSize: 26,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
               fontFamily: "Poppins",
             ),

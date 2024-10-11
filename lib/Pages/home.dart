@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import 'ServiceDetails.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -46,18 +48,23 @@ class _HomePageState extends State<HomePage> {
             // Hero section with location input and a search bar
             _buildHeroSection(),
             const SizedBox(height: 20),
+            // Custom Promotion Container
+
             // Dynamic Promotions section with carousel
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 children: [
                   _buildTitleText("Explore Services"),
-                  const SizedBox(height: 15),
-                  _buildServiceCard('Farm Equipment', 'images/auto.png',
-                      'Explore farm equipment.'),
                   const SizedBox(height: 20),
-                  _buildServiceCard('Market Prices', 'images/jcb.png',
-                      'Get the latest market prices.'),
+                  _buildServiceCard('Consultation', 'images/addimage.png',
+                      'Expert consultation available.'),
+                  const SizedBox(height: 20),
+                  _buildServiceCard('Consultation', 'images/addimage.png',
+                      'Expert consultation available.'),
+                  const SizedBox(height: 20),
+                  _buildServiceCard('Consultation', 'images/addimage.png',
+                      'Expert consultation available.'),
                   const SizedBox(height: 20),
                   _buildServiceCard('Consultation', 'images/addimage.png',
                       'Expert consultation available.'),
@@ -142,7 +149,7 @@ class _HomePageState extends State<HomePage> {
             child: TextField(
               style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
-                hintText: "Search for services",
+                hintText: "Where to?",
                 hintStyle: const TextStyle(color: Colors.black54),
                 icon: const Icon(Icons.search, color: Colors.black),
                 border: InputBorder.none,
@@ -197,7 +204,8 @@ class _HomePageState extends State<HomePage> {
   Widget _buildServiceCard(String title, String imagePath, String description) {
     return GestureDetector(
       onTap: () {
-        // Add interaction logic here
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ServiceDetail()));
       },
       child: Container(
         decoration: BoxDecoration(

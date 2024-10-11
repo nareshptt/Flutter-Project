@@ -26,16 +26,6 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    // Set status bar color every time the widget is rebuilt
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.white, // Status bar color
-        systemNavigationBarColor: Colors.white, // Navigation bar color
-        statusBarIconBrightness: Brightness.dark, // Dark icons on status bar
-        systemNavigationBarIconBrightness: Brightness.dark, // Dark nav icons
-      ),
-    );
-
     return Scaffold(
       backgroundColor: Colors.white, // White background
       body: SafeArea(
@@ -43,7 +33,6 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildCustomAppBar(), // Custom App Bar instead of default AppBar
-            const SizedBox(height: 20),
 
             // Profile Picture with Gradient Border and Pencil Icon
             Stack(
@@ -98,6 +87,7 @@ class _ProfileState extends State<Profile> {
 
             // Profile Information with Gradient Highlight
             Container(
+              width: MediaQuery.of(context).size.width / 1.20,
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -210,7 +200,7 @@ class _ProfileState extends State<Profile> {
   // Custom AppBar Replacement
   Widget _buildCustomAppBar() {
     return Container(
-      padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
+      padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
       decoration: const BoxDecoration(
         color: Colors.white, // Background color of custom app bar
       ),

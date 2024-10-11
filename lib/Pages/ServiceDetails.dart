@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Activity extends StatefulWidget {
-  const Activity({super.key});
+import 'bottomNavigation.dart';
+
+class ServiceDetail extends StatefulWidget {
+  const ServiceDetail({super.key});
 
   @override
-  State<Activity> createState() => _ActivityState();
+  State<ServiceDetail> createState() => _ActivityState();
 }
 
-class _ActivityState extends State<Activity> {
+class _ActivityState extends State<ServiceDetail> {
   @override
   void initState() {
     super.initState();
@@ -33,14 +35,37 @@ class _ActivityState extends State<Activity> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Recent Activity",
-                style: TextStyle(
-                  fontSize: 20, // Slightly increased font size
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                  fontFamily: "Poppins",
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BottumNavigation()));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 27,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    "Consultation",
+                    style: TextStyle(
+                      fontSize: 20, // Slightly increased font size
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 10),
               Expanded(

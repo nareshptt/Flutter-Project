@@ -40,7 +40,7 @@ class _ActivityState extends State<ServiceDetail> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.pop(
                           context,
                           MaterialPageRoute(
                               builder: (context) => BottumNavigation()));

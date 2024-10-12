@@ -39,35 +39,34 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final double padding = screenSize.width * 0.05; // 5% padding
+
     return Scaffold(
-      backgroundColor: Colors.white, // Set the background to white
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Hero section with location input and a search bar
-            _buildHeroSection(),
+            _buildHeroSection(screenSize, padding),
             const SizedBox(height: 20),
-            // Custom Promotion Container
-
-            // Dynamic Promotions section with carousel
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: padding),
                 children: [
                   _buildTitleText("Explore Services"),
                   const SizedBox(height: 20),
                   _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.'),
+                      'Expert consultation available.', screenSize),
                   const SizedBox(height: 20),
                   _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.'),
+                      'Expert consultation available.', screenSize),
                   const SizedBox(height: 20),
                   _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.'),
+                      'Expert consultation available.', screenSize),
                   const SizedBox(height: 20),
                   _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.'),
+                      'Expert consultation available.', screenSize),
                   const SizedBox(height: 20),
                 ],
               ),
@@ -78,9 +77,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildHeroSection() {
+  Widget _buildHeroSection(Size screenSize, double padding) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: padding, vertical: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.vertical(
@@ -107,7 +106,6 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
-                      // Show the dropdown menu
                       _showLocationDropdown();
                     },
                     child: Text(
@@ -123,7 +121,6 @@ class _HomePageState extends State<HomePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Show the dropdown menu
                   _showLocationDropdown();
                 },
                 child:
@@ -134,6 +131,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 15),
           // Search Bar
           Container(
+            width: screenSize.width * 0.85, // 85% of screen width
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -201,13 +199,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildServiceCard(String title, String imagePath, String description) {
+  Widget _buildServiceCard(
+      String title, String imagePath, String description, Size screenSize) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ServiceDetail()));
       },
       child: Container(
+        height: screenSize.height * 0.18, // 18% of screen height
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(15),
@@ -232,14 +232,15 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Image.asset(
                 imagePath,
-                height: 120,
-                width: 120,
+                height: screenSize.height * 0.18,
+                width: screenSize.width * 0.35, // 35% of screen width
                 fit: BoxFit.cover,
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.all(
+                    screenSize.width * 0.04), // Responsive padding
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -248,7 +249,7 @@ class _HomePageState extends State<HomePage> {
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF212121), // Black text
+                        color: Color(0xFF212121),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -256,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                       description,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF424242), // Dark grey text
+                        color: Color(0xFF424242),
                       ),
                     ),
                   ],

@@ -56,18 +56,17 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   _buildTitleText("Explore Services"),
                   const SizedBox(height: 20),
-                  _buildServiceCard('Consultation', 'images/addimage.png',
+                  _buildServiceCard('Consultation', 'images/tractor.png',
                       'Expert consultation available.', screenSize),
-                  const SizedBox(height: 20),
-                  _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.', screenSize),
-                  const SizedBox(height: 20),
-                  _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.', screenSize),
-                  const SizedBox(height: 20),
-                  _buildServiceCard('Consultation', 'images/addimage.png',
-                      'Expert consultation available.', screenSize),
-                  const SizedBox(height: 20),
+                  _buildServiceCard('JCB Service', 'images/jcb.png',
+                      'Heavy-duty machinery services.', screenSize),
+                  _buildServiceCard('Rotavator Service', 'images/Rotavator.png',
+                      'Efficient field preparation services.', screenSize),
+                  _buildServiceCard(
+                      'Custom Service',
+                      'images/addimage.png',
+                      'Specialized services tailored to your needs.',
+                      screenSize),
                 ],
               ),
             ),
@@ -105,9 +104,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blueAccent, size: 25),
                   const SizedBox(width: 10),
                   GestureDetector(
-                    onTap: () {
-                      _showLocationDropdown();
-                    },
+                    onTap: _showLocationDropdown,
                     child: Text(
                       selectedLocation,
                       style: const TextStyle(
@@ -120,9 +117,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               GestureDetector(
-                onTap: () {
-                  _showLocationDropdown();
-                },
+                onTap: _showLocationDropdown,
                 child:
                     const Icon(Icons.arrow_drop_down, color: Colors.blueAccent),
               ),
@@ -203,10 +198,11 @@ class _HomePageState extends State<HomePage> {
       String title, String imagePath, String description, Size screenSize) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ServiceDetail()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ServiceDetail()));
       },
       child: Container(
+        margin: const EdgeInsets.only(bottom: 20),
         height: screenSize.height * 0.18, // 18% of screen height
         decoration: BoxDecoration(
           color: Colors.white,

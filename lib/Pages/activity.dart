@@ -40,16 +40,26 @@ class _ActivityState extends State<Activity> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Recent Activity",
-                style: TextStyle(
-                  fontSize: screenHeight * 0.028, // Responsive font size
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                  fontFamily: "Poppins",
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Recent Activity",
+                    style: TextStyle(
+                      fontSize: screenHeight * 0.03, // Responsive font size
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                  Icon(
+                    Icons.search,
+                    color: Colors.grey.shade600,
+                    size: screenHeight * 0.03,
+                  ),
+                ],
               ),
-              SizedBox(height: screenHeight * 0.015),
+              SizedBox(height: screenHeight * 0.02),
 
               // Expanded ListView for activity cards
               Expanded(
@@ -61,10 +71,8 @@ class _ActivityState extends State<Activity> {
                           'https://via.placeholder.com/100', // Dummy image URL
                       name: 'Naresh Kumar', // Sample name
                       serviceName: 'Plumbing Service', // Sample service name
-                      screenWidth:
-                          screenWidth, // Pass screenWidth for responsive layout
-                      screenHeight:
-                          screenHeight, // Pass screenHeight for responsive layout
+                      screenWidth: screenWidth, // Pass screenWidth
+                      screenHeight: screenHeight, // Pass screenHeight
                       onCallPressed: () {
                         // Handle call button action
                       },
@@ -94,19 +102,19 @@ class _ActivityState extends State<Activity> {
       ),
       padding: EdgeInsets.all(screenHeight * 0.015), // Responsive padding
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(
-            screenHeight * 0.015), // Responsive border radius
-        border: Border.all(
-          color: Colors.grey.shade300,
-          width: 1,
+        gradient: LinearGradient(
+          colors: [Colors.blue.shade50, Colors.white],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
+        borderRadius:
+            BorderRadius.circular(screenHeight * 0.02), // Border radius
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.15),
             spreadRadius: 1,
-            blurRadius: 4,
-            offset: const Offset(0, 2), // Slight shadow effect
+            blurRadius: 5,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -114,25 +122,27 @@ class _ActivityState extends State<Activity> {
         children: [
           // Profile Image with Circular Border
           Container(
-            width: screenHeight * 0.07, // Responsive profile image size
-            height: screenHeight * 0.07,
+            width: screenHeight * 0.08,
+            height: screenHeight * 0.08,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: const Color(0xFF1976D2),
-                width: 2,
-              ),
+              border: Border.all(color: const Color(0xFF1976D2), width: 2),
               image: DecorationImage(
                 image: NetworkImage(profileImageUrl),
                 fit: BoxFit.cover,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue.withOpacity(0.4),
+                  blurRadius: 5,
+                  spreadRadius: 1,
+                ),
+              ],
             ),
           ),
-          SizedBox(
-              width: screenWidth *
-                  0.04), // Responsive space between image and text
+          SizedBox(width: screenWidth * 0.04),
 
-          // Name, Service, and Call Button
+          // Name, Service, and Action Buttons
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,57 +157,28 @@ class _ActivityState extends State<Activity> {
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(
-                    height: screenHeight *
-                        0.005), // Responsive space between name and service name
+                SizedBox(height: screenHeight * 0.005),
                 Text(
-                  serviceName, // Display service name
+                  serviceName,
                   style: TextStyle(
-                    fontSize: screenHeight * 0.018, // Responsive font size
+                    fontSize: screenHeight * 0.018,
                     fontWeight: FontWeight.w500,
                     color: Colors.grey.shade600,
                     fontFamily: "Poppins",
                   ),
                 ),
-                SizedBox(
-                    height: screenHeight *
-                        0.008), // Responsive space before call action
-                Row(
-                  children: [
-                    Icon(
-                      Icons.phone,
-                      color: const Color(0xFF1976D2),
-                      size: screenHeight * 0.02, // Responsive icon size
-                    ),
-                    SizedBox(width: screenWidth * 0.02),
-                    Text(
-                      "Tap to Call",
-                      style: TextStyle(
-                        fontSize: screenHeight * 0.018, // Responsive font size
-                        color: const Color(0xFF1976D2),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
-
-          // Call Button with Icon
-          ElevatedButton(
+          // Call Button
+          IconButton(
             onPressed: onCallPressed,
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              backgroundColor: const Color(0xFF1976D2),
-              padding:
-                  EdgeInsets.all(screenHeight * 0.015), // Responsive padding
-            ),
-            child: Icon(
+            icon: Icon(
               Icons.phone,
               color: Colors.white,
-              size: screenHeight * 0.025, // Responsive call icon size
             ),
+            color: const Color(0xFF1976D2),
+            iconSize: screenHeight * 0.04,
           ),
         ],
       ),
